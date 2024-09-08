@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import Alumnis from './pages/Alumnis';
 import PurchaseCourse from './pages/PurchaseCourse';
 import Dashboard from './pages/Dashboard';
+import HiringPartners from './pages/HiringPartners';
 
 const App = () => {
 	const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -33,6 +34,7 @@ const App = () => {
 					<Route path='/alumnis' element={<Alumnis />} />
 					<Route path='/purchase/:id' element={<PurchaseCourse />} />
 					<Route path='/dashboard' element={<Dashboard />} />
+					<Route path='/hiringPartners' element={<HiringPartners />} />
 				</Routes>
 				<Footer />
 			</Router>

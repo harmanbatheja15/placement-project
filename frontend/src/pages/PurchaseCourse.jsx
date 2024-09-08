@@ -151,7 +151,7 @@ const PurchaseCourse = () => {
 	};
 
 	return (
-		<div className='max-w-lg w-full mx-auto p-5 mt-20'>
+		<div className='max-w-lg w-full mx-auto p-5 mt-20 mb-10'>
 			<h3 className='text-3xl sm:text-4xl leading-normal font-extrabold tracking-tight text-gray-900 text-center mb-16'>
 				Enroll <span className='text-indigo-600'>Now</span>
 			</h3>
@@ -187,6 +187,7 @@ const PurchaseCourse = () => {
 							}
 							value={value}
 							onChange={handleInputChange}
+							placeholder={`Enter your ${key}`}
 							required
 						/>
 					</div>

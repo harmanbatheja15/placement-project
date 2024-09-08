@@ -18,7 +18,7 @@ const Navbar = ({ token, setToken }) => {
 								<span className='text-indigo-600'>.</span>
 							</span>
 						</Link>
-						<nav className='flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200'>
+						<nav className='flex flex-wrap items-center justify-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200'>
 							<Link
 								to='/'
 								className='mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900'
@@ -42,6 +42,12 @@ const Navbar = ({ token, setToken }) => {
 								className='mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900'
 							>
 								Alumnis
+							</Link>
+							<Link
+								to='/hiringPartners'
+								className='mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900'
+							>
+								Hiring Partners
 							</Link>
 						</nav>
 					</div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
 	return (
 		<>
-			<footer className='bg-white'>
+			<footer className='bg-slate-100'>
 				<div className='max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8'>
 					<nav className='flex flex-wrap justify-center -mx-5 -my-2'>
 						<div className='px-5 py-2'>
@@ -36,6 +36,14 @@ const Footer = () => {
 								className='text-base leading-6 text-gray-500 hover:text-gray-900'
 							>
 								Alumnis
+							</Link>
+						</div>
+						<div className='px-5 py-2'>
+							<Link
+								to='/hiringPartners'
+								className='text-base leading-6 text-gray-500 hover:text-gray-900'
+							>
+								Hiring Partners
 							</Link>
 						</div>
 						{localStorage.getItem('token') ? (

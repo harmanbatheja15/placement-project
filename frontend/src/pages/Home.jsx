@@ -47,12 +47,12 @@ const Home = () => {
 												<polyline points='12 5 19 12 12 19'></polyline>
 											</svg>
 										</Link>
-										{/* <Link
-										to=''
-										className='flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600'
-									>
-										Learn More
-									</Link> */}
+										<Link
+											to='/hiringPartners'
+											className='flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600'
+										>
+											Hiring Partners
+										</Link>
 									</div>
 								</div>
 							</div>
