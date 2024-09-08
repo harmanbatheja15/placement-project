@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import BASE_URL from '../Base/Base';
 
-const initialcourseInfo = {
+const initialUserInfo = {
     name: '',
     price: '',
     image: '',
@@ -10,15 +10,15 @@ const initialcourseInfo = {
     description: '',
 }
 
-function AddCourse(props) {
-    const [courseInfo, setcourseInfo] = useState(initialcourseInfo);
+function AddUser(props) {
+    const [UserInfo, setUserInfo] = useState(initialUserInfo);
 
     useEffect(() => {
     }, []);
 
-    const addNewCourse = async()=>{
+    const addNewUser = async()=>{
         try{
-            const response = await axios.post(`${BASE_URL}/training/`,courseInfo);
+            const response = await axios.post(`${BASE_URL}/user/`,UserInfo);
             if(response){
                 props.setUserAdded();
             }
@@ -35,13 +35,13 @@ function AddCourse(props) {
                 <div className='row'>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Couse Name:</span>
+                            <span>Name:</span>
                             <input 
                                 type='text' 
                                 className='form-control' 
-                                placeholder='Enter Training Name ...'
-                                value={courseInfo.name}
-                                onChange={e=>setcourseInfo({...courseInfo,name:e.target.value})}
+                                placeholder='Enter Name ...'
+                                value={UserInfo.name}
+                                onChange={e=>setUserInfo({...UserInfo,name:e.target.value})}
                             />
                         </p>
                     </div>
@@ -52,8 +52,8 @@ function AddCourse(props) {
                                 type='Number' 
                                 className='form-control' 
                                 placeholder='Enter Price ...'
-                                value={courseInfo.price}
-                                onChange={e=>setcourseInfo({...courseInfo,price:e.target.value})}
+                                value={UserInfo.price}
+                                onChange={e=>setUserInfo({...UserInfo,price:e.target.value})}
                             />
                         </p>
                     </div>
@@ -64,8 +64,8 @@ function AddCourse(props) {
                                 type='text' 
                                 className='form-control' 
                                 placeholder='Enter Image Address'
-                                value={courseInfo.image}
-                                onChange={e=>setcourseInfo({...courseInfo,image:e.target.value})}
+                                value={UserInfo.image}
+                                onChange={e=>setUserInfo({...UserInfo,image:e.target.value})}
                             />
                         </p>
                     </div>
@@ -76,8 +76,8 @@ function AddCourse(props) {
                                 type='text' 
                                 className='form-control' 
                                 placeholder='Enter Type here ...'
-                                value={courseInfo.type}
-                                onChange={e=>setcourseInfo({...courseInfo,type:e.target.value})}
+                                value={UserInfo.type}
+                                onChange={e=>setUserInfo({...UserInfo,type:e.target.value})}
                             />
                         </p>
                     </div>
@@ -88,8 +88,8 @@ function AddCourse(props) {
                                 type='text' 
                                 className='form-control' 
                                 placeholder='Write Description here'
-                                value={courseInfo.description}
-                                onChange={e=>setcourseInfo({...courseInfo,description:e.target.value})}
+                                value={UserInfo.description}
+                                onChange={e=>setUserInfo({...UserInfo,description:e.target.value})}
                             />
                         </p>
                     </div>
@@ -97,9 +97,9 @@ function AddCourse(props) {
                 </div>
             </div>
 
-            <button className='btn btn-success' onClick={()=>addNewCourse()}>Add New Training</button>
+            <button className='btn btn-success' onClick={()=>addNewUser()}>Add New User</button>
         </div>
     )
 }
 
-export default AddCourse
+export default AddUser

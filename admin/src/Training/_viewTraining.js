@@ -1,76 +1,79 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BASE_URL from '../Base/Base';
 
-const initialcourseInfo = {
-    name: '',
-    description: '',
-    price: 0,
-    image: '',
-    type: 0
+const initialtrainingInfo = {
+	name: '',
+	description: '',
+	price: 0,
+	image: '',
+	type: 0,
+};
+
+function ViewTraining(props) {
+	const [trainingInfo, setTrainingInfo] = useState(initialtrainingInfo);
+
+	useEffect(() => {
+		fetchTrainingData();
+	}, []);
+
+	const fetchTrainingData = async () => {
+		try {
+			const response = await axios.get(
+				`${BASE_URL}/training/` + props.trainingId
+			);
+			if (response) {
+				console.log(response.data);
+				setTrainingInfo(response.data);
+			}
+			return;
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	return (
+		<div className='Course-view'>
+			<div className='box'>
+				<div className='row'>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>
+								Training Name:{' '}
+							</span>
+							<span>{trainingInfo.name}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>Price: </span>
+							<span>₹{trainingInfo.price}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>Type: </span>
+							<span>{trainingInfo.type}</span>
+						</p>
+					</div>
+					<div className='col-sm-50 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>Image: </span>
+							<span>{trainingInfo.image}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-12'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>
+								Description:{' '}
+							</span>
+							<span>{trainingInfo.description}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-function ViewCourse(props) {
-    const [courseInfo, setcourseInfo] = useState(initialcourseInfo);
-
-    useEffect(() => {
-        fetchCourseData()
-    }, []);
-
-    const fetchCourseData = async () => {
-        try {
-            const response = await axios.get(`${BASE_URL}/training/` + props.userId);
-            if (response) {
-                console.log(response.data);
-                setcourseInfo(response.data);
-            }
-            return
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-
-    return (
-        <div className='Course-view'>
-            <div className='box'>
-                <div className='row'>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Full Name:</span>
-                            <span>{courseInfo.name}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Price:</span>
-                            <span>{courseInfo.price}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Type:</span>
-                            <span>{courseInfo.type}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-50 col-md-6'>
-                        <p>
-                            <span>Image:</span>
-                            <span>{courseInfo.image}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Description:</span>
-                            <span>{courseInfo.description}</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default ViewCourse
+export default ViewTraining;

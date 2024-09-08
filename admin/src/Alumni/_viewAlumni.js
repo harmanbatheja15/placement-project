@@ -1,76 +1,83 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BASE_URL from '../Base/Base';
 
-const initialcourseInfo = {
-    name: '',
-    batch: '',
-    company:'',
-    image: '',
-    package: ''
+const initialAlumniInfo = {
+	name: '',
+	batch: '',
+	company: '',
+	image: '',
+	package: '',
+};
+
+function ViewAlumni(props) {
+	const [alumniInfo, setAlumniInfo] = useState(initialAlumniInfo);
+
+	useEffect(() => {
+		fetchAlumniData();
+	}, []);
+
+	const fetchAlumniData = async () => {
+		try {
+			const response = await axios.get(
+				`${BASE_URL}/alumni/` + props.alumniId
+			);
+			if (response) {
+				console.log(response.data);
+				setAlumniInfo(response.data);
+			}
+			return;
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	return (
+		<div className='Course-view'>
+			<div className='box'>
+				<div className='row'>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>
+								Full Name:{' '}
+							</span>
+							<span>{alumniInfo.name}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>Batch : </span>
+							<span>{alumniInfo.batch}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>
+								Company:{' '}
+							</span>
+							<span>{alumniInfo.company}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>
+								Package:{' '}
+							</span>
+							<span>{alumniInfo.package}</span>
+						</p>
+					</div>
+					<div className='col-sm-50 col-md-12'>
+						<p>
+							<span style={{ fontWeight: 'bold' }}>
+								Image Link:{' '}
+							</span>
+							<span>{alumniInfo.image}</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-function ViewCourse(props) {
-    const [courseInfo, setcourseInfo] = useState(initialcourseInfo);
-
-    useEffect(() => {
-        fetchCourseData()
-    }, []);
-
-    const fetchCourseData = async () => {
-        try {
-            const response = await axios.get(`${BASE_URL}/alumni/` + props.userId);
-            if (response) {
-                console.log(response.data);
-                setcourseInfo(response.data);
-            }
-            return
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-
-    return (
-        <div className='Course-view'>
-            <div className='box'>
-                <div className='row'>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Full Name:</span>
-                            <span>{courseInfo.name}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Batch :</span>
-                            <span>{courseInfo.batch}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Company:</span>
-                            <span>{courseInfo.company}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-50 col-md-6'>
-                        <p>
-                            <span>Image:</span>
-                            <span>{courseInfo.image}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Package:</span>
-                            <span>{courseInfo.package}</span>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default ViewCourse
+export default ViewAlumni;

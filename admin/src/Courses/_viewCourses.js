@@ -19,7 +19,7 @@ function ViewCourse(props) {
 
     const fetchCourseData = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/courses/` + props.userId);
+            const response = await axios.get(`${BASE_URL}/courses/` + props.courseId);
             if (response) {
                 console.log(response.data);
                 setcourseInfo(response.data);
@@ -38,31 +38,31 @@ function ViewCourse(props) {
                 <div className='row'>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Full Name:</span>
+                            <span style={{fontWeight: 'bold'}}>Course Name: </span>
                             <span>{courseInfo.name}</span>
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Price:</span>
-                            <span>{courseInfo.price}</span>
+                            <span style={{fontWeight: 'bold'}}>Price: </span>
+                            <span>₹{courseInfo.price}</span>
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Type:</span>
+                            <span style={{fontWeight: 'bold'}}>Type: </span>
                             <span>{courseInfo.type}</span>
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Image:</span>
+                            <span style={{fontWeight: 'bold'}}>Image: </span>
                             <span>{courseInfo.image}</span>
                         </p>
                     </div>
-                    <div className='col-sm-12 col-md-6'>
+                    <div className='col-sm-12 col-md-12'>
                         <p>
-                            <span>Description:</span>
+                            <span style={{fontWeight: 'bold'}}>Description: </span>
                             <span>{courseInfo.description}</span>
                         </p>
                     </div>

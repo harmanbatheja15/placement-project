@@ -21,7 +21,7 @@ function EditCourse(props) {
 
     const fetchCourseData = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/courses/` + props.userId);
+            const response = await axios.get(`${BASE_URL}/courses/` + props.courseId);
             if (response) {
                 console.log(response)
                 setcourseInfo(response.data);
@@ -35,16 +35,15 @@ function EditCourse(props) {
 
     const editExistCourse = async () => {
         try {
-            const response = await axios.put(`${BASE_URL}/courses/` + props.userId, courseInfo);
+            const response = await axios.put(`${BASE_URL}/courses/` + props.courseId, courseInfo);
             if (response) {
-                props.setUserEdited();
+                props.setCourseEdited();
             }
         }
         catch (e) {
             console.log(e)
         }
     }
-
 
     return (
         <div className='Course-view _add-view'>
@@ -98,10 +97,10 @@ function EditCourse(props) {
                             />
                         </p>
                     </div>
-                    <div className='col-sm-12 col-md-6'>
+                    <div className='col-sm-12 col-md-12'>
                         <p>
                             <span>Description</span>
-                            <input
+                            <textarea
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter Website'

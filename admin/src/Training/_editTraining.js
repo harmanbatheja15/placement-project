@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import BASE_URL from '../Base/Base';
 
-const initialcourseInfo = {
+const initialtrainingInfo = {
     id: '',
     name: '',
     price: 0,
@@ -11,20 +11,20 @@ const initialcourseInfo = {
     type: 0
 }
 
-function EditCourse(props) {
-    const [courseInfo, setcourseInfo] = useState(initialcourseInfo);
+function EditTraining(props) {
+    const [trainingInfo, setTrainingInfo] = useState(initialtrainingInfo);
 
     useEffect(() => {
-        setcourseInfo({ ...courseInfo,id: props.CourseId})
-        fetchCourseData();
+        setTrainingInfo({ ...trainingInfo, id: props.TrainingId})
+        fetchTrainingData();
     }, []);
 
-    const fetchCourseData = async () => {
+    const fetchTrainingData = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/training/` + props.userId);
+            const response = await axios.get(`${BASE_URL}/training/` + props.trainingId);
             if (response) {
                 console.log(response)
-                setcourseInfo(response.data);
+                setTrainingInfo(response.data);
             }
             return
         }
@@ -33,11 +33,11 @@ function EditCourse(props) {
         }
     }
 
-    const editExistCourse = async () => {
+    const editExistingTraining = async () => {
         try {
-            const response = await axios.put(`${BASE_URL}/training/` + props.userId, courseInfo);
+            const response = await axios.put(`${BASE_URL}/training/` + props.trainingId, trainingInfo);
             if (response) {
-                props.setUserEdited();
+                props.setTrainingEdited();
             }
         }
         catch (e) {
@@ -45,32 +45,32 @@ function EditCourse(props) {
         }
     }
 
-
     return (
         <div className='Course-view _add-view'>
             <div className='box'>
                 <div className='row'>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Course Name:</span>
+                            <span>Training Name:</span>
                             <input
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter Full Name'
-                                value={courseInfo.name}
-                                onChange={e => setcourseInfo({ ...courseInfo, name: e.target.value })}
+                                value={trainingInfo.name}
+                                onChange={e => setTrainingInfo({ ...trainingInfo, name: e.target.value })}
+								required
                             />
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Type</span>
+                            <span>Type:</span>
                             <input
                                 type='number'
                                 className='form-control'
                                 placeholder='Enter Description'
-                                value={courseInfo.type}
-                                onChange={e => setcourseInfo({ ...courseInfo, type: e.target.value })}
+                                value={trainingInfo.type}
+                                onChange={e => setTrainingInfo({ ...trainingInfo, type: e.target.value })}
                             />
                         </p>
                     </div>
@@ -81,41 +81,41 @@ function EditCourse(props) {
                                 type='number'
                                 className='form-control'
                                 placeholder='Enter Price'
-                                value={courseInfo.price}
-                                onChange={e => setcourseInfo({ ...courseInfo, price: e.target.value })}
+                                value={trainingInfo.price}
+                                onChange={e => setTrainingInfo({ ...trainingInfo, price: e.target.value })}
                             />
                         </p>
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Image Link </span>
+                            <span>Image Link:</span>
                             <input
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter Phone Number'
-                                value={courseInfo.image}
-                                onChange={e => setcourseInfo({ ...courseInfo, image: e.target.value })}
+                                value={trainingInfo.image}
+                                onChange={e => setTrainingInfo({ ...trainingInfo, image: e.target.value })}
                             />
                         </p>
                     </div>
-                    <div className='col-sm-12 col-md-10'>
+                    <div className='col-sm-12 col-md-12'>
                         <p>
-                            <span>Description</span>
+                            <span>Description:</span>
                             <textarea
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter Website'
-                                value={courseInfo.description}
-                                onChange={e => setcourseInfo({ ...courseInfo, description: e.target.value })}
+                                value={trainingInfo.description}
+                                onChange={e => setTrainingInfo({ ...trainingInfo, description: e.target.value })}
                             />
                         </p>
                     </div>
 
                 </div>
             </div>
-            <button className='btn btn-success' onClick={() => editExistCourse()}>Edit Course</button>
+            <button className='btn btn-success' onClick={() => editExistingTraining()}>Edit Training</button>
         </div>
     )
 }
 
-export default EditCourse
+export default EditTraining

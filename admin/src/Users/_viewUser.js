@@ -1,63 +1,77 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BASE_URL from '../Base/Base';
 
-const initialcourseInfo = {
-    name: '',
-    description: '',
-    price: 0,
-    image: '',
-    type: 0
+const initialUserInfo = {
+	name: '',
+	email: '',
+	description: '',
+	price: 0,
+	image: '',
+	type: 0,
+	courses: [],
+};
+
+function ViewUser(props) {
+	const [userInfo, setUserInfo] = useState(initialUserInfo);
+
+	useEffect(() => {
+		fetchUserData();
+	}, []);
+
+	const fetchUserData = async () => {
+		try {
+			const response = await axios.get(
+				`${BASE_URL}/users/` + props.userId
+			);
+			if (response) {
+				console.log(response.data);
+				setUserInfo(response.data);
+			}
+			return;
+		} catch (e) {
+			console.log(e);
+		}
+	};
+
+	return (
+		<div className='Course-view'>
+			<div className='box'>
+				<div className='row'>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{"fontWeight": "bold"}}>Full Name: </span>
+							<span>{userInfo.name}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-6'>
+						<p>
+							<span style={{"fontWeight": "bold"}}>Email: </span>
+							<span>{userInfo.email}</span>
+						</p>
+					</div>
+					<div className='col-sm-12 col-md-12'>
+						<p>
+							<span style={{"fontWeight": "bold"}}>Purchased Courses: </span>
+							<span>
+                                {userInfo.courses.length > 0 ? (
+                                    <ul>
+                                        {userInfo.courses.map((course, index) => (
+                                            <li key={index}>
+                                                <strong>{course.name}</strong>: {course.description} - ₹{course.price}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    'No courses available'
+                                )}
+                            </span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-function ViewCourse(props) {
-    const [courseInfo, setcourseInfo] = useState(initialcourseInfo);
-
-    useEffect(() => {
-        fetchCourseData()
-    }, []);
-
-    const fetchCourseData = async () => {
-        try {
-            const response = await axios.get(`${BASE_URL}/users/` + props.userId);
-            if (response) {
-                console.log(response.data);
-                setcourseInfo(response.data);
-            }
-            return
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-
-
-    return (
-        <div className='Course-view'>
-            <div className='box'>
-                <div className='row'>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Full Name:</span>
-                            <span>{courseInfo.name}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Email:</span>
-                            <span>{courseInfo.email}</span>
-                        </p>
-                    </div>
-                    <div className='col-sm-12 col-md-6'>
-                        <p>
-                            <span>Courses:</span>
-                            <span>{courseInfo.courses}</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export default ViewCourse
+export default ViewUser;

@@ -71,7 +71,7 @@ function AddCourse(props) {
                     </div>
                     <div className='col-sm-12 col-md-6'>
                         <p>
-                            <span>Enter Type</span>
+                            <span>Type:</span>
                             <input 
                                 type='text' 
                                 className='form-control' 
@@ -83,7 +83,7 @@ function AddCourse(props) {
                     </div>
                     <div className='col-sm-30 col-md-50'>
                         <p>
-                            <span>Description</span>
+                            <span>Description:</span>
                             <textarea
                                 type='text' 
                                 className='form-control' 

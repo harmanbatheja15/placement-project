@@ -34,7 +34,7 @@ const CourseDetail = () => {
 			} catch (err) {
 				console.error(err);
 			}
-		}
+		};
 		fetchUserData();
 	}, []);
 
@@ -75,22 +75,38 @@ const CourseDetail = () => {
 									{course.description}
 								</p>
 
-								<div className={`flex py-4 space-x-4 ${localStorage.getItem('token') && user?.courses?.map((course) => course._id)?.includes(course?._id) && 'hidden'}`}>
-									<Link
-										to={`${
-											localStorage.getItem('token')
-												? `/purchase/${course._id}`
-												: '/signin'
-										}`}
-									>
+								{localStorage.getItem('token') &&
+								user?.courses
+									?.map((course) => course._id)
+									?.includes(course?._id) ? (
+									<div className={`flex py-4 space-x-4`}>
 										<button
 											type='button'
 											className='h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white'
 										>
-											{localStorage.getItem('token') ? 'Enroll Now' : 'Login to Enroll'}
+											Enrolled
 										</button>
-									</Link>
-								</div>
+									</div>
+								) : (
+									<div className={`flex py-4 space-x-4`}>
+										<Link
+											to={`${
+												localStorage.getItem('token')
+													? `/purchase/${course._id}`
+													: '/signin'
+											}`}
+										>
+											<button
+												type='button'
+												className='h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white'
+											>
+												{localStorage.getItem('token')
+													? 'Enroll Now'
+													: 'Login to Enroll'}
+											</button>
+										</Link>
+									</div>
+								)}
 							</div>
 						</div>
 					</div>

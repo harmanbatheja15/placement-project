@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import BASE_URL from '../Base/Base';
 
-const initialcourseInfo = {
+const initialUserInfo = {
     id: '',
     name: '',
     price: 0,
@@ -11,20 +11,20 @@ const initialcourseInfo = {
     type: 0
 }
 
-function EditCourse(props) {
-    const [courseInfo, setcourseInfo] = useState(initialcourseInfo);
+function EditUser(props) {
+    const [userInfo, setUserInfo] = useState(initialUserInfo);
 
     useEffect(() => {
-        setcourseInfo({ ...courseInfo,id: props.CourseId})
-        fetchCourseData();
+        setUserInfo({ ...userInfo,id: props.UserId})
+        fetchUserData();
     }, []);
 
-    const fetchCourseData = async () => {
+    const fetchUserData = async () => {
         try {
-            const response = await axios.get(`${BASE_URL}/training/` + props.userId);
+            const response = await axios.get(`${BASE_URL}/user/` + props.userId);
             if (response) {
                 console.log(response)
-                setcourseInfo(response.data);
+                setUserInfo(response.data);
             }
             return
         }
@@ -33,9 +33,9 @@ function EditCourse(props) {
         }
     }
 
-    const editExistCourse = async () => {
+    const editExistingUser = async () => {
         try {
-            const response = await axios.put(`${BASE_URL}/training/` + props.userId, courseInfo);
+            const response = await axios.put(`${BASE_URL}/user/` + props.userId, userInfo);
             if (response) {
                 props.setUserEdited();
             }
@@ -57,8 +57,8 @@ function EditCourse(props) {
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter Full Name'
-                                value={courseInfo.name}
-                                onChange={e => setcourseInfo({ ...courseInfo, name: e.target.value })}
+                                value={userInfo.name}
+                                onChange={e => setUserInfo({ ...userInfo, name: e.target.value })}
                             />
                         </p>
                     </div>
@@ -69,8 +69,8 @@ function EditCourse(props) {
                                 type='number'
                                 className='form-control'
                                 placeholder='Enter Description'
-                                value={courseInfo.type}
-                                onChange={e => setcourseInfo({ ...courseInfo, type: e.target.value })}
+                                value={userInfo.type}
+                                onChange={e => setUserInfo({ ...userInfo, type: e.target.value })}
                             />
                         </p>
                     </div>
@@ -81,8 +81,8 @@ function EditCourse(props) {
                                 type='number'
                                 className='form-control'
                                 placeholder='Enter Price'
-                                value={courseInfo.price}
-                                onChange={e => setcourseInfo({ ...courseInfo, price: e.target.value })}
+                                value={userInfo.price}
+                                onChange={e => setUserInfo({ ...userInfo, price: e.target.value })}
                             />
                         </p>
                     </div>
@@ -93,8 +93,8 @@ function EditCourse(props) {
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter Phone Number'
-                                value={courseInfo.image}
-                                onChange={e => setcourseInfo({ ...courseInfo, image: e.target.value })}
+                                value={userInfo.image}
+                                onChange={e => setUserInfo({ ...userInfo, image: e.target.value })}
                             />
                         </p>
                     </div>
@@ -105,17 +105,17 @@ function EditCourse(props) {
                                 type='text'
                                 className='form-control'
                                 placeholder='Enter Website'
-                                value={courseInfo.description}
-                                onChange={e => setcourseInfo({ ...courseInfo, description: e.target.value })}
+                                value={userInfo.description}
+                                onChange={e => setUserInfo({ ...userInfo, description: e.target.value })}
                             />
                         </p>
                     </div>
 
                 </div>
             </div>
-            <button className='btn btn-success' onClick={() => editExistCourse()}>Edit Course</button>
+            <button className='btn btn-success' onClick={() => editExistingUser()}>Edit User</button>
         </div>
     )
 }
 
-export default EditCourse
+export default EditUser
