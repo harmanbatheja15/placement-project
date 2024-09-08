@@ -87,7 +87,7 @@ const Courses = () => {
 													)}
 												</p>
 											</footer>
-											<div className='text-right'>
+											<div className='flex items-center justify-between text-right'>
 												<Link
 													to={`/courseDetail/${course._id}`}
 												>
@@ -98,6 +98,7 @@ const Courses = () => {
 														Learn More
 													</button>
 												</Link>
+												<p>{course?.type === 0 ? 'Online' : 'Offline'}</p>
 											</div>
 										</div>
 									</article>
