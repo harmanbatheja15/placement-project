@@ -43,13 +43,13 @@ const Dashboard = () => {
 				{user?.courses?.length === 0 || user?.courses === undefined ? (
 					<>
 						<div className='text-center w-full'>
-							<p className='text-xl'>No courses found!</p>
+							<p className='text-xl'>No enrollments!</p>
 						</div>
 					</>
 				) : (
 					<>
 						{user?.courses?.map((course, index) => (
-							<Link to='/' key={index}>
+							<Link to={`/courseDetail/${course?._id}`} key={index}>
 								<div className='max-w-sm bg-white mx-auto rounded-xl overflow-hidden md:max-w-2xl border mb-2 hover:shadow-md transition-all duration-200'>
 									<div className=' md:flex'>
 										<div>

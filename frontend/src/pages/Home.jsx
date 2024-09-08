@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
+import TypewriterEffect from '../components/TypewriterEffect';
 
 const Home = () => {
 	return (
@@ -15,7 +15,7 @@ const Home = () => {
 											Transform Ideas into Code. {''}
 										</span>
 										<span className='block text-indigo-600 xl:inline'>
-											Start Learning Now
+											<TypewriterEffect text="Start Learning Now" />
 										</span>
 									</h1>
 									<p className='mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl'>

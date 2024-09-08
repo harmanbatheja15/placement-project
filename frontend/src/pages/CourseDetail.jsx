@@ -6,6 +6,7 @@ import { BASE_URL } from '../config.js';
 const CourseDetail = () => {
 	const { id } = useParams();
 	const [course, setCourse] = useState(null);
+	const [user, setUser] = useState(null);
 
 	useEffect(() => {
 		const fetchCourseDetail = async () => {
@@ -21,6 +22,21 @@ const CourseDetail = () => {
 		};
 		fetchCourseDetail();
 	}, [id]);
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+			try {
+				const response = await axios.get(
+					`${BASE_URL}/api/users/${localStorage.getItem('id')}`
+				);
+				setUser(response.data);
+				console.log('User Data: ', response.data);
+			} catch (err) {
+				console.error(err);
+			}
+		}
+		fetchUserData();
+	}, []);
 
 	if (!course) return <p>Loading...</p>;
 
@@ -59,7 +75,7 @@ const CourseDetail = () => {
 									{course.description}
 								</p>
 
-								<div className='flex py-4 space-x-4'>
+								<div className={`flex py-4 space-x-4 ${localStorage.getItem('token') && user?.courses?.map((course) => course._id)?.includes(course?._id) && 'hidden'}`}>
 									<Link
 										to={`${
 											localStorage.getItem('token')
@@ -71,9 +87,7 @@ const CourseDetail = () => {
 											type='button'
 											className='h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white'
 										>
-											{localStorage.getItem('token')
-												? 'Enroll Now'
-												: 'Login to Enroll'}
+											{localStorage.getItem('token') ? 'Enroll Now' : 'Login to Enroll'}
 										</button>
 									</Link>
 								</div>

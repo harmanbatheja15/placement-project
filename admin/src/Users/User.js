@@ -32,6 +32,20 @@ function Training() {
         }
     };
 
+	const coursesTemplate = (rowData) => {
+		return (
+			<div>
+				{rowData.courses.map((course, index) => {
+					return (
+						<div key={index}>
+							<span>{index+1}. {course.name}</span>
+						</div>
+					);
+				})}
+			</div>
+		);
+	}
+
     const actionsTemplate = (rowDate) => {
         return (
             <>
@@ -92,11 +106,11 @@ function Training() {
                         </button> */}
                     </div>
                     <DataTable value={users}>
-                        <Column field="name" header="Name"></Column>
-                        <Column field="email" header="Email"></Column>
-                        <Column field="courses" header="Purchased Courses"></Column>
-                        <Column header="Actions" body={actionsTemplate}></Column>
-                    </DataTable>
+						<Column field="name" header="Name"></Column>
+						<Column field="email" header="Email"></Column>
+						<Column header="Purchased Courses" body={coursesTemplate}></Column>
+						<Column header="Actions" body={actionsTemplate}></Column>
+					</DataTable>
                 </div>
             </div>
             <Dialog header="View User Data"

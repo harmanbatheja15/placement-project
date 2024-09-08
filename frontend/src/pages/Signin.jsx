@@ -42,7 +42,7 @@ const Signin = () => {
 			localStorage.setItem('name', response.data.user.name);
 			localStorage.setItem('email', response.data.user.email);
 			setSuccess('Login successful!');
-			navigate('/courses');
+			navigate('/dashboard');
 			window.location.reload();
 		} catch (err) {
 			setError('Invalid Credentials!');

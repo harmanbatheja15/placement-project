@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BASE_URL, razorpay_key_id } from '../config.js';
 
 const PurchaseCourse = () => {
+	const userId = localStorage.getItem('id');
 	const { id } = useParams();
 	const [course, setCourse] = useState(null);
 	const [formData, setFormData] = useState({
@@ -31,19 +32,19 @@ const PurchaseCourse = () => {
 		fetchCourse();
 	}, [id]);
 
-	useEffect(() => {
-		const fetchTraining = async () => {
-			try {
-				const response = await axios.get(
-					`${BASE_URL}/api/training/${id}`
-				);
-				setCourse(response.data);
-			} catch (err) {
-				console.error('Error fetching Training: ', err);
-			}
-		};
-		fetchTraining();
-	}, [id]);
+	// useEffect(() => {
+	// 	const fetchTraining = async () => {
+	// 		try {
+	// 			const response = await axios.get(
+	// 				`${BASE_URL}/api/training/${id}`
+	// 			);
+	// 			setCourse(response.data);
+	// 		} catch (err) {
+	// 			console.error('Error fetching Training: ', err);
+	// 		}
+	// 	};
+	// 	fetchTraining();
+	// }, [id]);
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
@@ -107,6 +108,14 @@ const PurchaseCourse = () => {
 					);
 
 					if (captureResponse.data.success) {
+						// Update user's courses after successful payment
+						await axios.post(
+							`${BASE_URL}/api/users/${userId}/courses`,
+							{
+								courseId: course?._id,
+							}
+						);
+
 						alert('Payment successful');
 						navigate('/dashboard');
 					} else {

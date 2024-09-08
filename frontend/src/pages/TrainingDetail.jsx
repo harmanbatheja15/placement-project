@@ -59,7 +59,7 @@ const TrainingDetail = () => {
 									{training.description}
 								</p>
 
-								<div className='flex py-4 space-x-4'>
+								{/* <div className='flex py-4 space-x-4'>
 									<Link
 										to={`${
 											localStorage.getItem('token')
@@ -76,7 +76,7 @@ const TrainingDetail = () => {
 												: 'Login to Enroll'}
 										</button>
 									</Link>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>

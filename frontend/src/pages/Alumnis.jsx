@@ -49,7 +49,7 @@ const Alumnis = () => {
 						<div className='flex flex-wrap -mx-1 lg:-mx-4 w-full'>
 							{alumnis.map((alumni) => (
 								<div
-									className='my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 flex'
+									className='my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 flex items-center justify-center'
 									key={alumni._id}
 								>
 									<article className='flex flex-col overflow-hidden rounded-lg shadow-lg bg-white'>
@@ -76,7 +76,9 @@ const Alumnis = () => {
 														{alumni.company ||
 															'Microsoft'}
 													</b>{' '}
-													- {alumni.package + ' LPA' || 'N/A'}
+													-{' '}
+													{alumni.package + ' LPA' ||
+														'N/A'}
 												</p>
 											</footer>
 										</div>
